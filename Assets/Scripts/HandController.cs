@@ -20,10 +20,6 @@ public class HandController : MonoBehaviour
     // current hand cards list to display
     private List<GameObject> currentCardObjects = new List<GameObject>();
 
-    void Start()
-    {
-        GenerateStartingHand();
-    }
 
     public void GenerateStartingHand()
     {

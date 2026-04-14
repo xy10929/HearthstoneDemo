@@ -22,6 +22,13 @@ public class CardDisplay : MonoBehaviour, IPointerClickHandler
     public ManaSystem manaSystem;
     public HandController handController;
 
+    public TurnManager turnManager;
+
+    void Start()
+    {
+        turnManager = FindObjectOfType<TurnManager>();
+    }
+
     // set cardInstance data
     public void SetCard(CardInstance instance)
     {
@@ -42,6 +49,13 @@ public class CardDisplay : MonoBehaviour, IPointerClickHandler
     // public void OnPointerClick(PointerEventData eventData) - from UnityEngine.EventSystems, for pointer input
     public void OnPointerClick(PointerEventData eventData)
     {
+
+        if (turnManager.currentTurn != TurnType.Player)
+        {
+            Debug.Log("Not Your Turn");
+            return;
+        }
+
         // mana spend check
         if (cardInstance == null)
         {

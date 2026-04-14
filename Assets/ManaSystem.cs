@@ -5,8 +5,8 @@ using TMPro;
 
 public class ManaSystem : MonoBehaviour
 {
-    public int currentMana = 10;
-    public int maxMana = 10;
+    public int currentMana = 1;
+    public int maxMana = 1;
 
     public TMP_Text manaText;
     public TMP_Text maxManaText;
@@ -20,20 +20,23 @@ public class ManaSystem : MonoBehaviour
     {
         currentMana -= cost;
 
-        UpdateCurMana();
+        UpdateManaUI();
     }
 
-    void UpdateCurMana()
+    void UpdateManaUI()
     {
-        if (manaText != null)
-        {
-            manaText.text = currentMana.ToString();
-        }
-    }
-
-    void Start()
-    {
+        manaText.text = currentMana.ToString();
         maxManaText.text = maxMana.ToString();
-        UpdateCurMana();
+    }
+
+    public void GainMana()
+    {
+        if (maxMana < 10)
+        {
+            maxMana++;
+        }
+        currentMana = maxMana;
+
+        UpdateManaUI();
     }
 }
