@@ -72,7 +72,7 @@ public class TurnManager : MonoBehaviour
   public void EndTurn()
   {
 
-    Debug.Log("EndTurn button clicked");
+    //Debug.Log("EndTurn button clicked");
 
     if (currentTurn == TurnType.Player)
     {

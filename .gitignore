@@ -16,5 +16,7 @@ UserSettings/
 *.svd
 *.pdb
 
+*.exr
+
 .DS_Store
 Thumbs.db

@@ -593,7 +593,7 @@ MonoBehaviour:
   m_FontData:
     m_Font: {fileID: 12800000, guid: fd02d47381337754b97919c3b7695d40, type: 3}
     m_FontSize: 26
-    m_FontStyle: 1
+    m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 2
     m_MaxSize: 40
@@ -726,7 +726,7 @@ RectTransform:
   m_GameObject: {fileID: 9007926224480448229}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.8, y: 0.8, z: 0.8}
+  m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 5373843486488029567}
@@ -741,7 +741,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 250, y: 465.2}
+  m_SizeDelta: {x: 150, y: 465.2}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &5099697808657328152
 CanvasRenderer:
@@ -769,3 +769,8 @@ MonoBehaviour:
   manaText: {fileID: 3778228379952836111}
   attackText: {fileID: 6457291530345499008}
   healthText: {fileID: 5604039903000950418}
+  manaSystem: {fileID: 0}
+  handController: {fileID: 0}
+  turnManager: {fileID: 0}
+  attackTextObejct: {fileID: 700200128067967073}
+  healthTextObejct: {fileID: 5548959570999058621}

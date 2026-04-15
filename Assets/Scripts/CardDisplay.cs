@@ -22,11 +22,16 @@ public class CardDisplay : MonoBehaviour, IPointerClickHandler
     public ManaSystem manaSystem;
     public HandController handController;
 
+    // find at Start()
     public TurnManager turnManager;
+
+    // drag subobjects into slots
+    public GameObject attackTextObejct;
+    public GameObject healthTextObejct;
 
     void Start()
     {
-        turnManager = FindObjectOfType<TurnManager>();
+        turnManager = FindAnyObjectByType<TurnManager>();
     }
 
     // set cardInstance data
@@ -44,6 +49,17 @@ public class CardDisplay : MonoBehaviour, IPointerClickHandler
 
         attackText.text = data.attack.ToString();
         healthText.text = data.health.ToString();
+
+        if (data.cardType == CardType.Minion)
+        {
+            attackTextObejct.SetActive(true);
+            healthTextObejct.SetActive(true);
+        }
+        else
+        {
+            attackTextObejct.SetActive(false);
+            healthTextObejct.SetActive(false);
+        }
     }
 
     // public void OnPointerClick(PointerEventData eventData) - from UnityEngine.EventSystems, for pointer input
@@ -56,9 +72,15 @@ public class CardDisplay : MonoBehaviour, IPointerClickHandler
             return;
         }
 
-        // mana spend check
         if (cardInstance == null)
         {
+            Debug.Log("CardInstance is null");
+            return;
+        }
+
+        if (cardInstance.data == null)
+        {
+            Debug.Log("Card data is null");
             return;
         }
 
@@ -76,16 +98,71 @@ public class CardDisplay : MonoBehaviour, IPointerClickHandler
             return;
         }
 
-        // spend mana
-        manaSystem.SpendMana(cost);
+        Card cardData = cardInstance.data;
 
-        Debug.Log("Played card: " + cardInstance.data.cardName);
+        if (cardData.cardType == CardType.Spell)
+        {
+            if (TargetSelector.Instance != null)
+            {
+                // save card into TargetSelector.SelectedCardDisplay
+                TargetSelector.Instance.BeginTargetSelection(this);
+            }
+            else
+            {
+                Debug.Log("TargetSelector is missing");
+            }
 
-        // remove Card Object from currentCard list
-        handController.RemoveCard(gameObject);
+            return;
+        }
 
-        // remove CardPrefab UI that CardDisplay added as a component
-        Destroy(gameObject);
+        Debug.Log("Minion summon is not implemented yet");
+
+        // Minion logic
+
     }
 
 }
+
+
+
+// click -> mana change -> card remove
+// public void OnPointerClick(PointerEventData eventData)
+// {
+
+//     if (turnManager.currentTurn != TurnType.Player)
+//     {
+//         Debug.Log("Not Your Turn");
+//         return;
+//     }
+
+//     // mana spend check
+//     if (cardInstance == null)
+//     {
+//         return;
+//     }
+
+//     if (manaSystem == null)
+//     {
+//         Debug.Log("ManaSystem is missing");
+//         return;
+//     }
+
+//     int cost = cardInstance.currentCost;
+
+//     if (!manaSystem.CanPlayCard(cost))
+//     {
+//         Debug.Log("Not enough mana");
+//         return;
+//     }
+
+//     // spend mana
+//     manaSystem.SpendMana(cost);
+
+//     Debug.Log("Played card: " + cardInstance.data.cardName);
+
+//     // remove Card Object from currentCard list
+//     handController.RemoveCard(gameObject);
+
+//     // remove CardPrefab UI that CardDisplay added as a component
+//     Destroy(gameObject);
+// }

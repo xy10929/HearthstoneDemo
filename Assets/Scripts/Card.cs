@@ -21,4 +21,19 @@ public class Card : ScriptableObject
   public int manaCost;
   public int attack;
   public int health;
+
+  public CardType cardType;
+  public CardEffectType effectType;
+  public int effectValue;
+}
+
+public enum CardType
+{
+  Minion,
+  Spell
+}
+
+public enum CardEffectType
+{
+  Damage,
 }
