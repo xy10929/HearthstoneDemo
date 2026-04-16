@@ -48,6 +48,16 @@ public class TurnManager : MonoBehaviour
 
     handController.DrawFromDeck(deckController);
 
+    Minion[] minions = FindObjectsByType<Minion>();
+
+    foreach (Minion minion in minions)
+    {
+      if (minion.isPlayerOwned)
+      {
+        minion.SetCanAttack(true);
+      }
+    }
+
     UpdateEndTurnButtonUI();
   }
 

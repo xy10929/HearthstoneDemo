@@ -98,26 +98,14 @@ public class CardDisplay : MonoBehaviour, IPointerClickHandler
             return;
         }
 
-        Card cardData = cardInstance.data;
-
-        if (cardData.cardType == CardType.Spell)
+        if (TargetSelector.Instance == null)
         {
-            if (TargetSelector.Instance != null)
-            {
-                // save card into TargetSelector.SelectedCardDisplay
-                TargetSelector.Instance.BeginTargetSelection(this);
-            }
-            else
-            {
-                Debug.Log("TargetSelector is missing");
-            }
-
+            Debug.Log("TargetSelector is missing");
             return;
         }
 
-        Debug.Log("Minion summon is not implemented yet");
-
-        // Minion logic
+        // mode 1a & 2a
+        TargetSelector.Instance.BeginCardSelection(this);
 
     }
 

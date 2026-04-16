@@ -19,7 +19,8 @@ public class HeroClickable : MonoBehaviour, IPointerClickHandler
 
     if (TargetSelector.Instance != null)
     {
-      TargetSelector.Instance.SelectTarget(hero);
+      // mode 1b & 3b
+      TargetSelector.Instance.TrySelectTarget(hero);
     }
     else
     {

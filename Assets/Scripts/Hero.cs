@@ -10,6 +10,8 @@ public class Hero : MonoBehaviour, ITargetable
     public int maxHealth = 30;
     public int currentHealth = 30;
 
+    public bool isPlayerOwned = false;
+
     // drag healthtext UI into slots
     public TMP_Text healthText;
 
@@ -24,7 +26,7 @@ public class Hero : MonoBehaviour, ITargetable
 
         UpdateHealthUI();
 
-        Debug.Log(heroName + "takes " + damageAmount + "damage. Current HP: " + currentHealth);
+        Debug.Log(heroName + " hero takes " + damageAmount + "damage. Current HP: " + currentHealth);
     }
 
     public void Heal(int healAmount)
@@ -38,7 +40,7 @@ public class Hero : MonoBehaviour, ITargetable
 
         UpdateHealthUI();
 
-        Debug.Log(heroName + "takes " + healAmount + "heal. Current HP: " + currentHealth);
+        Debug.Log(heroName + " hero takes " + healAmount + "heal. Current HP: " + currentHealth);
     }
 
     public void UpdateHealthUI()
