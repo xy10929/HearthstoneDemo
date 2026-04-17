@@ -78,7 +78,6 @@ public class BattleResolver : MonoBehaviour
             return;
         }
 
-        // resolve effect
         if (cardData.effectType == CardEffectType.Damage)
         {
 
@@ -99,7 +98,6 @@ public class BattleResolver : MonoBehaviour
 
         Debug.Log("This spell effect is not implemented yet");
     }
-
 
 
     // resolve mode 2b
@@ -163,7 +161,6 @@ public class BattleResolver : MonoBehaviour
 
         Destroy(cardDisplay.gameObject);
     }
-
 
 
     // resolve 3b
@@ -236,7 +233,10 @@ public class BattleResolver : MonoBehaviour
 
 
 
+
+
     // AI
+    // ① Spell
     public void ResolveSpellFromAI(CardInstance cardInstance, ITargetable target, ManaSystem manaSystem)
     {
         if (cardInstance == null || cardInstance.data == null)
@@ -272,6 +272,8 @@ public class BattleResolver : MonoBehaviour
         }
     }
 
+
+    // ② MinionSummoning
     public void ResolveMinionSummonFromAI(CardInstance cardInstance, BoardManager boardManager, ManaSystem manaSystem)
     {
         if (cardInstance == null || cardInstance.data == null)

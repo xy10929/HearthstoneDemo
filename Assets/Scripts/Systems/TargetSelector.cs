@@ -24,6 +24,7 @@ public class TargetSelector : MonoBehaviour
         Instance = this;
     }
 
+
     // save selected card into selectedCardDisplay and set currentMode
     // mode 1a & 2a
     public void BeginCardSelection(CardDisplay cardDisplay)
@@ -68,6 +69,7 @@ public class TargetSelector : MonoBehaviour
             return;
         }
     }
+
 
     // save selected minion into selectedAttackerMinion and set currentMode
     // mode 3a
@@ -141,6 +143,7 @@ public class TargetSelector : MonoBehaviour
         }
 
     }
+
 
     // mode 2b (click minion card and then) click board to summon
     public void TrySummonSelectedMinion()

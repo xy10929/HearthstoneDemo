@@ -1,5 +1,7 @@
 // added as script of EnemyHandCountText object
 
+// text display for AI hand card count
+
 using UnityEngine;
 using TMPro;
 

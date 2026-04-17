@@ -37,10 +37,10 @@ public class TurnManager : MonoBehaviour
     Debug.Log("Your Turn");
 
     playerManaSystem.GainMana();
-    // enemyManaSystem.GainMana();
 
     UpdateEndTurnButtonUI();
   }
+
 
   public void StartPlayerTurn()
   {
@@ -66,6 +66,7 @@ public class TurnManager : MonoBehaviour
     UpdateEndTurnButtonUI();
   }
 
+
   public void StartEnemyTurn()
   {
 
@@ -82,10 +83,12 @@ public class TurnManager : MonoBehaviour
     aiController.StartEnemyTurn();
   }
 
+
   void EndEnemyTurn()
   {
     StartPlayerTurn();
   }
+
 
   // drag TurnManager object into OnClick() slot of End Turn button, and set EndTurn()
   public void EndTurn()
@@ -98,6 +101,7 @@ public class TurnManager : MonoBehaviour
       StartEnemyTurn();
     }
   }
+
 
   void UpdateEndTurnButtonUI()
   {

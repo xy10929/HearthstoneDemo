@@ -1,7 +1,13 @@
 // added as script of EnemyAI object
 
+// player: CardDisplay -> TargetSelector -> BattleResolver
+// AI: CardInstance -> AIController -> BattleResolver
+
 using UnityEngine;
+
+// for  IEnumerator
 using System.Collections;
+
 using System.Collections.Generic;
 
 
@@ -16,20 +22,21 @@ public class AIController : MonoBehaviour
     public Hero playerHero;
     public Hero enemyHero;
 
-    public Transform enemyBoardArea;
-
     public float delay = 1f;
 
     public void StartEnemyTurn()
     {
+        // start a coroutine - function that can pause execution and resume later
         StartCoroutine(RunAI());
     }
 
+    // coroutine function (must return IEnumerator in Unity)
     IEnumerator RunAI()
     {
 
         Debug.Log("AI Turn Start");
 
+        // pause execution for 'delay' seconds, then continue
         yield return new WaitForSeconds(delay);
 
         enemyHand.DrawFromDeck(enemyDeck);
@@ -45,15 +52,17 @@ public class AIController : MonoBehaviour
 
         Debug.Log("AI Turn End");
 
-        TargetSelector.Instance.ClearSelection();
+        yield return new WaitForSeconds(delay);
 
         FindAnyObjectByType<TurnManager>().StartPlayerTurn();
 
     }
 
+    // try to play one card and return bool
     bool TryPlayRandomCard()
     {
 
+        // list for cards that can be played for now
         List<CardInstance> playableCards = new List<CardInstance>();
 
         foreach (var card in enemyHand.hand)
@@ -70,6 +79,7 @@ public class AIController : MonoBehaviour
             return false;
         }
 
+        // Random.Range(min, max) -> randomly choose [min, max)
         CardInstance chosen = playableCards[Random.Range(0, playableCards.Count)];
 
         Card cardData = chosen.data;
@@ -105,16 +115,16 @@ public class AIController : MonoBehaviour
         List<ITargetable> targets = new List<ITargetable>();
 
         targets.Add(playerHero);
-        targets.Add(enemyHero);
+        //targets.Add(enemyHero);
 
         foreach (Transform t in boardManager.playerBoardArea)
         {
 
-            Minion m = t.GetComponent<Minion>();
+            Minion minion = t.GetComponent<Minion>();
 
-            if (m != null)
+            if (minion != null)
             {
-                targets.Add(m);
+                targets.Add(minion);
             }
         }
 
