@@ -14,14 +14,18 @@ public class TurnManager : MonoBehaviour
 {
   public TurnType currentTurn;
 
-  // darg 3 manager objects into slots
+  // darg 4 manager objects into slots
   public HandController handController;
   public DeckController deckController;
-  public ManaSystem manaSystem;
+  public ManaSystem playerManaSystem;
+  public ManaSystem enemyManaSystem;
 
   // drag button & text objects into slots
   public Button endTurnButton;
   public TMP_Text endTurnButtonText;
+
+  // drag EnemyAI object
+  public AIController aiController;
 
   // without drawing in first turn
   void Start()
@@ -32,7 +36,8 @@ public class TurnManager : MonoBehaviour
 
     Debug.Log("Your Turn");
 
-    manaSystem.GainMana();
+    playerManaSystem.GainMana();
+    // enemyManaSystem.GainMana();
 
     UpdateEndTurnButtonUI();
   }
@@ -44,7 +49,7 @@ public class TurnManager : MonoBehaviour
 
     Debug.Log("Your Turn");
 
-    manaSystem.GainMana();
+    playerManaSystem.GainMana();
 
     handController.DrawFromDeck(deckController);
 
@@ -68,9 +73,13 @@ public class TurnManager : MonoBehaviour
 
     Debug.Log("Enemy Turn");
 
+    enemyManaSystem.GainMana();
+
     UpdateEndTurnButtonUI();
 
-    Invoke("EndEnemyTurn", 2f);
+    // Invoke("EndEnemyTurn", 2f);
+
+    aiController.StartEnemyTurn();
   }
 
   void EndEnemyTurn()

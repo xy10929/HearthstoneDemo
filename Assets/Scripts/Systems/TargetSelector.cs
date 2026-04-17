@@ -86,7 +86,7 @@ public class TargetSelector : MonoBehaviour
 
         if (!minion.canAttack)
         {
-            Debug.Log("This minion cannot attck yet");
+            Debug.Log("This minion cannot attck until your next turn");
             return;
         }
 

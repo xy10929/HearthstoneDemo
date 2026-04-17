@@ -18,7 +18,7 @@ public class HandController : MonoBehaviour
     public int maxHandSize = 5;
 
     // current hand cards list to display
-    private List<GameObject> currentCardObjects = new List<GameObject>();
+    public List<GameObject> currentCardObjects = new List<GameObject>();
 
 
     public void GenerateStartingHand()

@@ -19,6 +19,7 @@ public class BattleResolver : MonoBehaviour
         Instance = this;
     }
 
+
     // resolve mode 1b
     public void ResolveCardToTarget(CardDisplay cardDisplay, ITargetable target)
     {
@@ -99,6 +100,8 @@ public class BattleResolver : MonoBehaviour
         Debug.Log("This spell effect is not implemented yet");
     }
 
+
+
     // resolve mode 2b
     public void ResolveMinionSummon(CardDisplay cardDisplay)
     {
@@ -140,7 +143,7 @@ public class BattleResolver : MonoBehaviour
 
         if (!boardManager.CanSummonToPlayerBoard())
         {
-            Debug.Log("BoardManager is full");
+            Debug.Log("Your board is full");
             return;
         }
 
@@ -160,6 +163,8 @@ public class BattleResolver : MonoBehaviour
 
         Destroy(cardDisplay.gameObject);
     }
+
+
 
     // resolve 3b
     public void ResolveMinionAttackToTarget(Minion attacker, ITargetable target)
@@ -227,5 +232,77 @@ public class BattleResolver : MonoBehaviour
         }
 
         Debug.Log("Unsupported target type");
+    }
+
+
+
+    // AI
+    public void ResolveSpellFromAI(CardInstance cardInstance, ITargetable target, ManaSystem manaSystem)
+    {
+        if (cardInstance == null || cardInstance.data == null)
+        {
+            Debug.Log("Incalid AI card");
+            return;
+        }
+
+        Card cardData = cardInstance.data;
+
+        if (cardData.cardType != CardType.Spell)
+        {
+            Debug.Log("AI tried to use non-spell");
+            return;
+        }
+
+        int cost = cardInstance.currentCost;
+
+        if (!manaSystem.CanPlayCard(cost))
+        {
+            Debug.Log("AI not enough mana");
+            return;
+        }
+
+        if (cardData.effectType == CardEffectType.Damage)
+        {
+
+            target.TakeDamage(cardData.effectValue);
+
+            manaSystem.SpendMana(cost);
+
+            Debug.Log("[AI] " + cardData.cardName + " dealt " + cardData.effectValue + " damage to " + target.GetTargetName());
+        }
+    }
+
+    public void ResolveMinionSummonFromAI(CardInstance cardInstance, BoardManager boardManager, ManaSystem manaSystem)
+    {
+        if (cardInstance == null || cardInstance.data == null)
+        {
+            Debug.Log("Incalid AI card");
+            return;
+        }
+
+        Card cardData = cardInstance.data;
+
+        if (cardData.cardType != CardType.Minion)
+        {
+            Debug.Log("AI tried to use non-minion");
+            return;
+        }
+
+        int cost = cardInstance.currentCost;
+
+        if (!manaSystem.CanPlayCard(cost))
+        {
+            Debug.Log("AI not enough mana");
+            return;
+        }
+
+        Minion minion = boardManager.SummonEnemyMinion(cardInstance);
+
+        if (minion == null) return;
+
+        manaSystem.SpendMana(cost);
+
+        Debug.Log("[AI] summonoed " + cardData.cardName);
+
     }
 }
