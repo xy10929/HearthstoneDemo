@@ -27,6 +27,21 @@ public class Hero : MonoBehaviour, ITargetable
         UpdateHealthUI();
 
         Debug.Log(heroName + " hero takes " + damageAmount + "damage. Current HP: " + currentHealth);
+
+        if (currentHealth <= 0)
+        {
+            if (EndManager.Instance != null)
+            {
+                if (isPlayerOwned)
+                {
+                    EndManager.Instance.EndGame(false);
+                }
+                else
+                {
+                    EndManager.Instance.EndGame(true);
+                }
+            }
+        }
     }
 
     public void Heal(int healAmount)

@@ -10,6 +10,11 @@ public class MinionClickable : MonoBehaviour, IPointerClickHandler
 
     public void OnPointerClick(PointerEventData eventData)
     {
+        // disable click when game over
+        if (EndManager.Instance != null && EndManager.Instance.isGameOver)
+        {
+            return;
+        }
 
         if (minion == null)
         {

@@ -44,6 +44,11 @@ public class TurnManager : MonoBehaviour
 
   public void StartPlayerTurn()
   {
+    // game over
+    if (EndManager.Instance != null && EndManager.Instance.isGameOver)
+    {
+      return;
+    }
 
     currentTurn = TurnType.Player;
 
@@ -69,6 +74,11 @@ public class TurnManager : MonoBehaviour
 
   public void StartEnemyTurn()
   {
+    // game over
+    if (EndManager.Instance != null && EndManager.Instance.isGameOver)
+    {
+      return;
+    }
 
     currentTurn = TurnType.Enemy;
 
@@ -93,8 +103,11 @@ public class TurnManager : MonoBehaviour
   // drag TurnManager object into OnClick() slot of End Turn button, and set EndTurn()
   public void EndTurn()
   {
-
-    //Debug.Log("EndTurn button clicked");
+    // game over
+    if (EndManager.Instance != null && EndManager.Instance.isGameOver)
+    {
+      return;
+    }
 
     if (currentTurn == TurnType.Player)
     {

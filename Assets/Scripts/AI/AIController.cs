@@ -33,6 +33,12 @@ public class AIController : MonoBehaviour
     // coroutine function (must return IEnumerator in Unity)
     IEnumerator RunAI()
     {
+        // game over
+        if (EndManager.Instance != null && EndManager.Instance.isGameOver)
+        {
+            // end the coroutine
+            yield break;
+        }
 
         Debug.Log("AI Turn Start");
 

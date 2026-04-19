@@ -65,6 +65,11 @@ public class CardDisplay : MonoBehaviour, IPointerClickHandler
     // public void OnPointerClick(PointerEventData eventData) - from UnityEngine.EventSystems, for pointer input
     public void OnPointerClick(PointerEventData eventData)
     {
+        // disable click when game over
+        if (EndManager.Instance != null && EndManager.Instance.isGameOver)
+        {
+            return;
+        }
 
         if (turnManager.currentTurn != TurnType.Player)
         {

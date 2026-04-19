@@ -11,6 +11,13 @@ public class HeroClickable : MonoBehaviour, IPointerClickHandler
   // 2 hero objects must be image UI object
   public void OnPointerClick(PointerEventData eventData)
   {
+
+    // disable click when game over
+    if (EndManager.Instance != null && EndManager.Instance.isGameOver)
+    {
+      return;
+    }
+
     if (hero == null)
     {
       Debug.Log("hero is missing");
