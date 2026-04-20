@@ -10,14 +10,14 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 116530cdadab4a949806e4cc1cc26edc, type: 3}
-  m_Name: test_spell
+  m_Name: test_minion 3
   m_EditorClassIdentifier: Assembly-CSharp::Card
-  cardName: test_spell
+  cardName: test_minion
   description: 
   artwork: {fileID: 0}
-  manaCost: 4
-  attack: 0
-  health: 0
-  cardType: 1
+  manaCost: 0
+  attack: 4
+  health: 5
+  cardType: 0
   effectType: 0
-  effectValue: 2
+  effectValue: 0

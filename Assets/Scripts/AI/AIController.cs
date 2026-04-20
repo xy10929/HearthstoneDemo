@@ -42,6 +42,8 @@ public class AIController : MonoBehaviour
 
         Debug.Log("AI Turn Start");
 
+        // yield return - pause itself inside the current function scope
+
         // pause execution for 'delay' seconds, then continue
         yield return new WaitForSeconds(delay);
 
@@ -49,12 +51,16 @@ public class AIController : MonoBehaviour
 
         yield return new WaitForSeconds(delay);
 
-        while (TryPlayRandomCard())
+        // 1. play card(spell resolve & minion summon) logic
+        while (TryPlayRandomHighestCostCard())
         {
             yield return new WaitForSeconds(delay);
         }
 
-        // attack logic
+        // 2. minion attack logic
+
+        // yield return StartCoroutine(...) - the caller pauses for the cellee
+        yield return StartCoroutine(AttackWithAllEnemyMinions());
 
         Debug.Log("AI Turn End");
 
@@ -65,7 +71,7 @@ public class AIController : MonoBehaviour
     }
 
     // try to play one card and return bool
-    bool TryPlayRandomCard()
+    bool TryPlayRandomHighestCostCard()
     {
 
         // list for cards that can be played for now
@@ -85,8 +91,28 @@ public class AIController : MonoBehaviour
             return false;
         }
 
+        // find heighest cost number
+        int heighestCost = -1;
+        foreach (var card in playableCards)
+        {
+            if (card.currentCost > heighestCost)
+            {
+                heighestCost = card.currentCost;
+            }
+        }
+
+        // list for cards with heightest cost that can be played
+        List<CardInstance> heightestCostCards = new List<CardInstance>();
+        foreach (var card in playableCards)
+        {
+            if (card.currentCost == heighestCost)
+            {
+                heightestCostCards.Add(card);
+            }
+        }
+
         // Random.Range(min, max) -> randomly choose [min, max)
-        CardInstance chosen = playableCards[Random.Range(0, playableCards.Count)];
+        CardInstance chosen = heightestCostCards[Random.Range(0, heightestCostCards.Count)];
 
         Card cardData = chosen.data;
 
@@ -115,13 +141,39 @@ public class AIController : MonoBehaviour
         return false;
     }
 
+    // attck by all enemy minions
+    IEnumerator AttackWithAllEnemyMinions()
+    {
+
+        foreach (Transform t in boardManager.enemyBoardArea)
+        {
+
+            Minion minion = t.GetComponent<Minion>();
+
+            if (minion == null)
+            {
+                continue;
+            }
+
+            if (!minion.canAttack)
+            {
+                continue;
+            }
+
+            ITargetable target = GetRandomTarget();
+
+            battleResolver.ResolveMinionAttackToTarget(minion, target);
+
+            yield return new WaitForSeconds(delay);
+        }
+    }
+
     ITargetable GetRandomTarget()
     {
 
         List<ITargetable> targets = new List<ITargetable>();
 
         targets.Add(playerHero);
-        //targets.Add(enemyHero);
 
         foreach (Transform t in boardManager.playerBoardArea)
         {

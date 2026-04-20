@@ -58,6 +58,7 @@ public class TurnManager : MonoBehaviour
 
     handController.DrawFromDeck(deckController);
 
+    // enable attack
     Minion[] minions = FindObjectsByType<Minion>();
 
     foreach (Minion minion in minions)
@@ -85,6 +86,17 @@ public class TurnManager : MonoBehaviour
     Debug.Log("Enemy Turn");
 
     enemyManaSystem.GainMana();
+
+    // enable attack
+    Minion[] minions = FindObjectsByType<Minion>();
+
+    foreach (Minion minion in minions)
+    {
+      if (!minion.isPlayerOwned)
+      {
+        minion.SetCanAttack(true);
+      }
+    }
 
     UpdateEndTurnButtonUI();
 

@@ -10,6 +10,8 @@ public class Hero : MonoBehaviour, ITargetable
     public int maxHealth = 30;
     public int currentHealth = 30;
 
+    // set true for PlayHero in Hero script in inspector
+    // set false for EnemyHero(by default) in Hero script in inspector
     public bool isPlayerOwned = false;
 
     // drag healthtext UI into slots
@@ -38,6 +40,7 @@ public class Hero : MonoBehaviour, ITargetable
                 }
                 else
                 {
+                    // EnemyHero(by default) currentHealth <= 0  ->  player win  -> true argument for EndGame(bool playerWon)
                     EndManager.Instance.EndGame(true);
                 }
             }

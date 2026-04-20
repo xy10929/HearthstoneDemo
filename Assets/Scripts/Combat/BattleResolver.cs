@@ -163,7 +163,7 @@ public class BattleResolver : MonoBehaviour
     }
 
 
-    // resolve 3b
+    // resolve 3b (include AI ③)
     public void ResolveMinionAttackToTarget(Minion attacker, ITargetable target)
     {
 
@@ -188,10 +188,11 @@ public class BattleResolver : MonoBehaviour
         Hero heroTarget = target as Hero;
         Minion minionTarget = target as Minion;
 
+        // minion -> hero
         if (heroTarget != null)
         {
 
-            if (heroTarget.isPlayerOwned)
+            if (heroTarget.isPlayerOwned == attacker.isPlayerOwned)
             {
                 Debug.Log("Cannot attack your own hero");
                 return;
@@ -206,10 +207,11 @@ public class BattleResolver : MonoBehaviour
             return;
         }
 
+        // minion -> minion
         if (minionTarget != null)
         {
 
-            if (minionTarget.isPlayerOwned)
+            if (minionTarget.isPlayerOwned == attacker.isPlayerOwned)
             {
                 Debug.Log("Cannot attack your own minion");
                 return;

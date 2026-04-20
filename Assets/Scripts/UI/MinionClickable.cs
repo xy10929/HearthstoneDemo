@@ -42,13 +42,13 @@ public class MinionClickable : MonoBehaviour, IPointerClickHandler
         // minion instance as attacker or attack target
         if (minion.isPlayerOwned)
         {
-            // attacker
+            //  mode 3a   attacker
             TargetSelector.Instance.TrySelectAttacker(minion);
             return;
         }
         if (currentMode == SelectionMode.MinionAttacking)
         {
-            // attack target
+            // mode 3b   attack target
             TargetSelector.Instance.TrySelectTarget(minion);
         }
     }
