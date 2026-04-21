@@ -28,7 +28,7 @@ public class Hero : MonoBehaviour, ITargetable
 
         UpdateHealthUI();
 
-        Debug.Log(heroName + " hero takes " + damageAmount + "damage. Current HP: " + currentHealth);
+        Debug.Log(heroName + " hero takes " + damageAmount + " damage. Current HP: " + currentHealth);
 
         if (currentHealth <= 0)
         {

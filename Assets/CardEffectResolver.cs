@@ -21,6 +21,8 @@ public class CardEffectResolver
                     if (enemyHero != null)
                     {
                         enemyHero.TakeDamage(effectValue);
+
+                        Debug.Log("[CardEffect]: " + minion.minionName + " deals " + effectValue + " damage to enemyHero");
                     }
                 }
                 else
@@ -28,6 +30,8 @@ public class CardEffectResolver
                     if (playerHero != null)
                     {
                         playerHero.TakeDamage(effectValue);
+
+                        Debug.Log("[CardEffect]: " + minion.minionName + " deals " + effectValue + " damage to playerHero");
                     }
                 }
                 break;

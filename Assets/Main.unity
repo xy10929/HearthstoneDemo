@@ -330,7 +330,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::TargetSelector
   selectedCardDisplay: {fileID: 0}
   selectedAttackerMinion: {fileID: 0}
-  currentMode: 0
+  currentState: 0
   boardManager: {fileID: 1614728908}
   battleResolver: {fileID: 526657009}
 --- !u!4 &218033197
@@ -3210,13 +3210,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: '::'
   deckCards:
+  - {fileID: 11400000, guid: 64a1e23fb9d57d74c93c04f176d6aaf4, type: 2}
+  - {fileID: 11400000, guid: 466de9c67720a2d4aa9eef936bdffc60, type: 2}
+  - {fileID: 11400000, guid: 95f085cd74d39e141bf23499ab8a3ced, type: 2}
   - {fileID: 11400000, guid: 3c0ca770e51373b4991447c3f173df72, type: 2}
   - {fileID: 11400000, guid: 37f9dfb832246d14fb30c184d65f64e1, type: 2}
   - {fileID: 11400000, guid: a42e64bb230229f4bbb5c710442cb639, type: 2}
   - {fileID: 11400000, guid: 81859b05fd6cb6648b3e831144e91bb1, type: 2}
-  - {fileID: 11400000, guid: 95f085cd74d39e141bf23499ab8a3ced, type: 2}
-  - {fileID: 11400000, guid: 64a1e23fb9d57d74c93c04f176d6aaf4, type: 2}
-  - {fileID: 11400000, guid: 466de9c67720a2d4aa9eef936bdffc60, type: 2}
 --- !u!1 &1685400657
 GameObject:
   m_ObjectHideFlags: 0

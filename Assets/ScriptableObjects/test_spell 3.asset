@@ -19,5 +19,9 @@ MonoBehaviour:
   attack: 0
   health: 0
   cardType: 1
-  effectType: 0
+  effectType: 1
   effectValue: 5
+  battlecryEffectType: 0
+  battlecryValue: 0
+  deathrattleEffectType: 0
+  deathrattleValue: 0

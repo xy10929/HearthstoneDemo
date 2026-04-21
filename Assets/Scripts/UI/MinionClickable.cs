@@ -28,27 +28,27 @@ public class MinionClickable : MonoBehaviour, IPointerClickHandler
             return;
         }
 
-        SelectionMode currentMode = TargetSelector.Instance.currentMode;
+        SelectionState currentState = TargetSelector.Instance.currentState;
 
-        // mode 1b
+        // state 1b
         // minion instance as spell target
-        if (currentMode == SelectionMode.SpellTargeting)
+        if (currentState == SelectionState.SpellTargeting)
         {
             TargetSelector.Instance.TrySelectTarget(minion);
             return;
         }
 
-        // mode 3
+        // state 3
         // minion instance as attacker or attack target
         if (minion.isPlayerOwned)
         {
-            //  mode 3a   attacker
+            //  state 3a   attacker
             TargetSelector.Instance.TrySelectAttacker(minion);
             return;
         }
-        if (currentMode == SelectionMode.MinionAttacking)
+        if (currentState == SelectionState.AttackerSelected)
         {
-            // mode 3b   attack target
+            // state 3b   attack target
             TargetSelector.Instance.TrySelectTarget(minion);
         }
     }

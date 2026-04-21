@@ -7,10 +7,35 @@
 // -> UI OnPointerClick -> TargetSelector(Router)
 // -> BattleResolver(Controller) -> data update -> UI change
 
-public enum SelectionMode
+
+// public enum SelectionMode
+// {
+//     None,
+//     SpellTargeting,
+//     MinionSummoning,
+//     MinionAttacking
+// }
+
+
+
+
+
+// Idle ->
+// 1.SpellTargeting
+// 2.MinionSummoning
+// 3.AttackerSelected
+// -> Resolving -> Idle
+
+// UI (with ...Clickable) OnPointerClick -> TargetSelector(Idle -> State 1/2/3)
+// -> UI OnPointerClick -> TargetSelector(State 1/2/3 -> Resolving)
+// -> BattleResolver(data update -> UI change)
+// -> State(Idle -> Resolving)
+
+public enum SelectionState
 {
-    None,
+    Idle,
     SpellTargeting,
     MinionSummoning,
-    MinionAttacking
+    AttackerSelected,
+    Resolving
 }

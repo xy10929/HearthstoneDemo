@@ -54,13 +54,15 @@ public class AIController : MonoBehaviour
         // 1. play card(spell resolve & minion summon) logic
         while (TryPlayRandomHighestCostCard())
         {
-            yield return new WaitForSeconds(delay);
+            yield return new WaitForSeconds(2 * delay);
         }
 
         // 2. minion attack logic
 
         // yield return StartCoroutine(...) - the caller pauses for the cellee
         yield return StartCoroutine(AttackWithAllEnemyMinions());
+
+        yield return new WaitForSeconds(delay);
 
         Debug.Log("AI Turn End");
 

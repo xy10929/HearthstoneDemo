@@ -24,4 +24,4 @@ MonoBehaviour:
   battlecryEffectType: 0
   battlecryValue: 0
   deathrattleEffectType: 1
-  deathrattleValue: 20
+  deathrattleValue: 3
