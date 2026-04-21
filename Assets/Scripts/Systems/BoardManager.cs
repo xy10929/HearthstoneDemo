@@ -11,6 +11,10 @@ public class BoardManager : MonoBehaviour
     // drag prefab
     public GameObject minionPrefab;
 
+    // drag hero
+    public Hero playerHero;
+    public Hero enemyHero;
+
     public int maxMinionsPerSide = 7;
 
     public bool CanSummonToPlayerBoard()
@@ -43,6 +47,16 @@ public class BoardManager : MonoBehaviour
         {
             // Initialize Text UI
             minion.Initialize(cardInstance, true);
+
+            // bind deathrattle data from card to minion instance
+            if (cardInstance != null && cardInstance.data != null)
+            {
+                minion.deathrattleEffectType = cardInstance.data.deathrattleEffectType;
+                minion.deathrattleValue = cardInstance.data.deathrattleValue;
+            }
+
+            minion.playerHero = playerHero;
+            minion.enemyHero = enemyHero;
         }
 
         // get MinionClickable script of its prefab
@@ -77,6 +91,16 @@ public class BoardManager : MonoBehaviour
         {
             // Initialize Text UI
             minion.Initialize(cardInstance, false);
+
+            // bind deathrattle data from card to minion instance
+            if (cardInstance != null && cardInstance.data != null)
+            {
+                minion.deathrattleEffectType = cardInstance.data.deathrattleEffectType;
+                minion.deathrattleValue = cardInstance.data.deathrattleValue;
+            }
+
+            minion.playerHero = playerHero;
+            minion.enemyHero = enemyHero;
         }
 
         // get MinionClickable script of its prefab

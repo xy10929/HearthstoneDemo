@@ -157,6 +157,9 @@ public class BattleResolver : MonoBehaviour
 
         Debug.Log(cardData.cardName + " summoned");
 
+        // trigger battlecry
+        CardEffectResolver.ResolveMinionEffect(cardData.battlecryEffectType, cardData.battlecryValue, minion, boardManager.playerHero, boardManager.enemyHero);
+
         handController.RemoveCard(cardDisplay.gameObject);
 
         Destroy(cardDisplay.gameObject);
@@ -307,6 +310,9 @@ public class BattleResolver : MonoBehaviour
         manaSystem.SpendMana(cost);
 
         Debug.Log("[AI] summonoed " + cardData.cardName);
+
+        // trigger battlecry
+        CardEffectResolver.ResolveMinionEffect(cardData.battlecryEffectType, cardData.battlecryValue, minion, boardManager.playerHero, boardManager.enemyHero);
 
     }
 }

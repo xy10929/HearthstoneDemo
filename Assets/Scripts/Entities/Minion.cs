@@ -20,6 +20,12 @@ public class Minion : MonoBehaviour, ITargetable
     public TMP_Text healthText;
     public TMP_Text nameText;
 
+    // for deathrattle
+    public CardEffectType deathrattleEffectType = CardEffectType.None;
+    public int deathrattleValue = 0;
+    public Hero playerHero;
+    public Hero enemyHero;
+
     public void Initialize(CardInstance cardInstance, bool playerOwned)
     {
         Card data = cardInstance.data;
@@ -96,6 +102,9 @@ public class Minion : MonoBehaviour, ITargetable
 
     void Die()
     {
+        // trigger deathrattle
+        CardEffectResolver.ResolveMinionEffect(deathrattleEffectType, deathrattleValue, this, playerHero, enemyHero);
+
         Debug.Log("Minion " + minionName + " died");
 
         Destroy(gameObject);

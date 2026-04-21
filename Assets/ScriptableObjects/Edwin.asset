@@ -16,8 +16,12 @@ MonoBehaviour:
   description: Charge
   artwork: {fileID: 21300000, guid: b85c1d751aeba4e4c9acbb094f72a042, type: 3}
   manaCost: 0
-  attack: 30
-  health: 30
+  attack: 5
+  health: 2
   cardType: 0
   effectType: 0
   effectValue: 0
+  battlecryEffectType: 0
+  battlecryValue: 0
+  deathrattleEffectType: 0
+  deathrattleValue: 0

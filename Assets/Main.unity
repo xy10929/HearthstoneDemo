@@ -3147,6 +3147,8 @@ MonoBehaviour:
   playerBoardArea: {fileID: 1203773071}
   enemyBoardArea: {fileID: 74876363}
   minionPrefab: {fileID: 8763802045848630455, guid: f9223c503ddb31147b6931c614ad1a7a, type: 3}
+  playerHero: {fileID: 1205535696}
+  enemyHero: {fileID: 664026107}
   maxMinionsPerSide: 7
 --- !u!4 &1614728909
 Transform:

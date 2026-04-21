@@ -21,3 +21,7 @@ MonoBehaviour:
   cardType: 0
   effectType: 0
   effectValue: 0
+  battlecryEffectType: 0
+  battlecryValue: 0
+  deathrattleEffectType: 1
+  deathrattleValue: 20
