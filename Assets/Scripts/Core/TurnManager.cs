@@ -54,20 +54,13 @@ public class TurnManager : MonoBehaviour
 
     Debug.Log("Your Turn");
 
+    // trigger event
+    // enable attack
+    GameEvents.RaiseTurnStarted(true);
+
     playerManaSystem.GainMana();
 
     handController.DrawFromDeck(deckController);
-
-    // enable attack
-    Minion[] minions = FindObjectsByType<Minion>();
-
-    foreach (Minion minion in minions)
-    {
-      if (minion.isPlayerOwned)
-      {
-        minion.SetCanAttack(true);
-      }
-    }
 
     UpdateEndTurnButtonUI();
   }
@@ -85,18 +78,10 @@ public class TurnManager : MonoBehaviour
 
     Debug.Log("Enemy Turn");
 
-    enemyManaSystem.GainMana();
-
     // enable attack
-    Minion[] minions = FindObjectsByType<Minion>();
+    GameEvents.RaiseTurnStarted(false);
 
-    foreach (Minion minion in minions)
-    {
-      if (!minion.isPlayerOwned)
-      {
-        minion.SetCanAttack(true);
-      }
-    }
+    enemyManaSystem.GainMana();
 
     UpdateEndTurnButtonUI();
 
